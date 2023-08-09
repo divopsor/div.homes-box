@@ -1,3 +1,5 @@
+'use client';
+
 import type { NextPage } from "next";
 import { Container } from "../../components/ui/Container";
 import { EditableListItem } from "../../components/ui/EditableListItem";
@@ -20,6 +22,7 @@ export const DonePage: NextPage = () => {
         <ul>
           {todoList.map((data: any) => (
             <EditableListItem
+              id={data.id}
               key={data.id}
               data={data}
               viewButtons={{

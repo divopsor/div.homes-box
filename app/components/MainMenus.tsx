@@ -5,7 +5,7 @@ import { Container } from "./ui/Container";
 import { TxtButton } from "./ui/TxtButton";
 
 export function MainMenus() {
-  const category = window.location.pathname.split('/').pop()!;
+  const category = typeof window === 'undefined' ? '' : window.location.pathname.split('/').pop()!;
   const [todoList, refetchTodoList] = useFlashList(category);
 
   if (todoList == null || todoList.length === 0) {

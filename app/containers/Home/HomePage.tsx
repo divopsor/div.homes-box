@@ -1,3 +1,5 @@
+'use client';
+
 import type { NextPage } from "next";
 import { API } from "../../api/index";
 import { MainMenus } from "../../components/MainMenus";
@@ -10,7 +12,7 @@ import { TextAreaForm } from "../../components/ui/TextAreaForm";
 import { useFlashList } from "../../hooks/useList";
 
 export const HomePage: NextPage = () => {
-  const category = window.location.pathname.split('/').pop()!;
+  const category = typeof window === 'undefined' ? '' : window.location.pathname.split('/').pop()!;
   const [todoList, refetchTodoList] = useFlashList(category);
 
   return (
