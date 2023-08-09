@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 module.exports = (phase, { defaultConfig }) => {
   const nextConfig = {
+    output: 'export',
     // ...defaultConfig,
     reactStrictMode: true,
     swcMinify: true,
