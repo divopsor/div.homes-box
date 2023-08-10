@@ -1,7 +1,6 @@
 'use client';
 
 import { API } from "../../api/index";
-import { MainMenus } from "../../components/MainMenus";
 import { Container } from "../../components/ui/Container";
 import { EditableListItem } from "../../components/ui/EditableListItem";
 import { Spacing } from "../../components/ui/Space";
@@ -15,8 +14,6 @@ export const HomePage = ({ category }: { category: string }) => {
   return (
     <main>
       <Spacing size={30} />
-
-      <MainMenus />
 
       <Spacing size={30} />
 
