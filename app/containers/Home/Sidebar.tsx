@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Txt } from "../../components/ui/Txt";
-import { useCategoryList } from "../../hooks/useList";
+import { useFlashCategoryList } from "../../hooks/useList";
 
 export function Sidebar() {
-  const [list] = useCategoryList();
+  const [list] = useFlashCategoryList();
   const searchParams = useSearchParams();
   const category = searchParams.get('category')!;
 

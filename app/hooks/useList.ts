@@ -74,6 +74,40 @@ export function useList(model?: Model) {
   return [list, refetch, isLoading, isFetching] as const;
 }
 
+
+
+export function useFlashCategoryList() {
+  const [list, refetch, isLoading, isFetching] = useCategoryList();
+  const [flashList, setFlashList] = useState<any>([]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const list = JSON.parse(window?.localStorage?.getItem(
+        `useFlashCategoryList`
+      ) ?? '[]');
+
+      setFlashList(list);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (list == null) {
+      return;
+    }
+
+    if (typeof window !== "undefined") {
+      window?.localStorage?.setItem(
+        `useFlashCategoryList`,
+        JSON.stringify(list)
+      );
+    }
+
+    setFlashList(list);
+  }, [list]);
+
+  return [flashList, refetch, isLoading, isFetching] as const;
+}
+
 export function useCategoryList() {
   const {
     data: list,
