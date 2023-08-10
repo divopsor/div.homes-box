@@ -68,3 +68,20 @@ export function useList(model: Model) {
 
   return [list, refetch, isLoading, isFetching] as const;
 }
+
+export function useCategoryList() {
+  const {
+    data: list,
+    refetch,
+    isLoading,
+    isFetching,
+  } = useQuery(
+    ["useCategoryList"],
+    API.getList,
+    {
+      initialData: [],
+    }
+  );
+
+  return [list, refetch, isLoading, isFetching] as const;
+}
