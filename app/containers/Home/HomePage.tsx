@@ -2,7 +2,6 @@
 
 import { API } from "../../api/index";
 import { MainMenus } from "../../components/MainMenus";
-// import { GtdTodoAPI, GtdDoneAPI } from "../../api/index";
 import { Container } from "../../components/ui/Container";
 import { EditableListItem } from "../../components/ui/EditableListItem";
 import { Spacing } from "../../components/ui/Space";
@@ -10,8 +9,7 @@ import { Stack } from "../../components/ui/Stack";
 import { TextAreaForm } from "../../components/ui/TextAreaForm";
 import { useFlashList } from "../../hooks/useList";
 
-export const HomePage = ({ params }: { params: { category: string } }) => {
-  const category = params.category;
+export const HomePage = ({ category }: { category: string }) => {
   const [todoList, refetchTodoList] = useFlashList(category);
 
   return (
