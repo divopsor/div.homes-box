@@ -1970,7 +1970,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-module-utils", "virtual:b4808e3fd18dff140ce463b71ec4e5e49f3a3503a3fec51a9e4c39a8db190811010300aef02aa87480864cdf68c72e9b2146835f7e691fbbf92bd9f843da5477#npm:2.8.0"],\
             ["eslint-plugin-import", "virtual:1c390d00e23a6d5ead394deecb10f2e477a3638ef79f77139c5f67d09367112904a141ddf6e02cb94c8711d67a9129e01eb8e2654f8b56b8ae6ba41c3dc0fd71#npm:2.28.0"],\
             ["fast-glob", "npm:3.3.1"],\
-            ["get-tsconfig", "npm:4.6.2"],\
+            ["get-tsconfig", "npm:4.7.0"],\
             ["is-core-module", "npm:2.13.0"],\
             ["is-glob", "npm:4.0.3"]\
           ],\
@@ -2633,10 +2633,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["get-tsconfig", [\
-        ["npm:4.6.2", {\
-          "packageLocation": "./.yarn/cache/get-tsconfig-npm-4.6.2-89eaf98a6d-e791e671a9.zip/node_modules/get-tsconfig/",\
+        ["npm:4.7.0", {\
+          "packageLocation": "./.yarn/cache/get-tsconfig-npm-4.7.0-098cf423a8-4453692572.zip/node_modules/get-tsconfig/",\
           "packageDependencies": [\
-            ["get-tsconfig", "npm:4.6.2"],\
+            ["get-tsconfig", "npm:4.7.0"],\
             ["resolve-pkg-maps", "npm:1.0.0"]\
           ],\
           "linkType": "HARD"\
