@@ -21,5 +21,5 @@ export const MainPage = () => {
     );
   }
 
-  return <HomePage category={'work'} />
+  return <HomePage category={category} />
 };
