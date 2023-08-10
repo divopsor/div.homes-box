@@ -1,7 +1,9 @@
+import { CSSProperties } from "react";
 import { Txt } from "./Txt";
 
 interface TextAreaProps {
   className?: string;
+  style?: CSSProperties;
   value: string;
   setValue: (_: string) => void;
   rows?: number;
@@ -9,6 +11,7 @@ interface TextAreaProps {
 }
 export function TextArea({
   className,
+  style,
   setValue,
   value,
   rows,
@@ -18,13 +21,14 @@ export function TextArea({
     <textarea
       className={className}
       spellCheck={false}
-      css={{
+      style={{
         resize: 'none',
         width: `${cols == null ? '100%' : 'auto'}`,
         fontSize: '1.6rem',
         wordBreak: 'keep-all',
         whiteSpace: 'pre-line',
-        fontFamily: '"Noto Sans KR", sans-serif'
+        fontFamily: '"Noto Sans KR", sans-serif',
+        ...(style ?? {}),
       }}
       value={value}
       rows={rows ?? value.split("\n").length}
@@ -34,15 +38,16 @@ export function TextArea({
   );
 }
 
-TextArea.View = ({ value }: Pick<TextAreaProps, "value">) => {
+TextArea.View = ({ value, style }: Pick<TextAreaProps, "value" | "style">) => {
   if (value == null) {
     return null;
   }
 
   return (
     <Txt
-      css={{
-        padding: '3px'
+      style={{
+        padding: '3px',
+        ...(style ?? {}),
       }}
     >
       {value.replace(

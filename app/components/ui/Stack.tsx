@@ -14,7 +14,7 @@ function StackHorizontal({
   return (
     <div
       className={className}
-      css={{
+      style={{
         display: 'flex',
         justifyContent: `${align}`,
         alignItems: 'center',
@@ -29,7 +29,7 @@ function StackVertical({ children, className, align = "center" }: StackProps) {
   return (
     <div
       className={className}
-      css={{
+      style={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: `${align === "right"

@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
 import { Stack } from "./Stack";
 
 interface ListItemProps {
@@ -6,15 +6,17 @@ interface ListItemProps {
   id?: string;
   left: ReactNode;
   right: ReactNode;
+  style?: CSSProperties;
 }
 
-export function ListItem({ id, className, left, right }: ListItemProps) {
+export function ListItem({ style, id, className, left, right }: ListItemProps) {
   return (
     <li
       key={id}
       className={className}
-      css={{
+      style={{
         borderRadius: '6px',
+        ...(style ?? {}),
       }}
     >
       <Stack.Horizontal>

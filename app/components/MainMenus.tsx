@@ -15,12 +15,12 @@ export function MainMenus() {
 
   return (
     <Container
-      css={{
+      style={{
         textAlign: 'right',
       }}
     >
       <TxtButton
-        css={{
+        style={{
           padding: '0',
         }}
         onClick={async () => {

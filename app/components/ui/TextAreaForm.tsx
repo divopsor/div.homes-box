@@ -23,7 +23,7 @@ export function TextAreaForm({ defaultText, onSubmit }: TextAreaFormProps) {
           setInputText("");
           await onSubmit(inputText);
         }}
-        css={{
+        style={{
           wordBreak: 'keep-all',
         }}
       >

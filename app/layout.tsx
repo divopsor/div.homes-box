@@ -1,11 +1,9 @@
-'use client'
-
-import Footer from "@divops/component-footer";
-import "./styles/index.css";
 import { MainNav } from "./components/MainNav";
 import { Container } from "./components/ui/Container";
 import { Spacing } from "./components/ui/Space";
 import Providers from "./providers";
+import Footer from "./components/Footer";
+import { GlobalCss } from "./components/GlobalCss";
 
 export default function RootLayout({
   children,
@@ -22,6 +20,7 @@ export default function RootLayout({
           <Footer />
         </Container>
       </body>
+      <GlobalCss />
     </html>
   )
 }

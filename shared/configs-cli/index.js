@@ -7,10 +7,8 @@ const dest = (dest) => path.join(cwd, dest);
 
 const DEPENDENCIES = {
   "@babel/core": "^7.19.1",
-  "@emotion/react": "^11.10.4",
 };
 const DEV_DEPENDENCIES = {
-  "@emotion/babel-plugin": "^11.10.2",
   "@types/babel__core": "^7",
   "@types/eslint": "^8",
   "@types/node": "18.7.18",
