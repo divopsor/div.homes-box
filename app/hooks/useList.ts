@@ -6,11 +6,14 @@ import { API } from "../api/index";
 
 type Model = string;
 
-export function useFlashList<T = any>(model: Model) {
+export function useFlashList<T = any>(model?: Model) {
   const [list, refetch, isLoading, isFetching] = useList(model);
   const [flashList, setFlashList] = useState<T[]>([]);
 
   useEffect(() => {
+    if (model == null) {
+      return;
+    }
     if (typeof window !== "undefined") {
       const list = JSON.parse(window?.localStorage?.getItem(
         `useFlashList-${model}`
@@ -39,10 +42,14 @@ export function useFlashList<T = any>(model: Model) {
     setFlashList(list);
   }, [list]);
 
+  if (model == null) {
+    return [[], () => {}, false, false] as [any[], () => void, boolean, boolean];
+  }
+
   return [flashList, refetch, isLoading, isFetching] as const;
 }
 
-export function useList(model: Model) {
+export function useList(model?: Model) {
   const {
     data: list,
     refetch,
@@ -51,6 +58,10 @@ export function useList(model: Model) {
   } = useQuery(
     ["fetchList", model],
     async () => {
+      if (model == null) {
+        return [];
+      }
+
       const data = await API.of(model).readList();
 
       return data;

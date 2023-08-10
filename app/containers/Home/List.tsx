@@ -1,11 +1,14 @@
 'use client';
 
+import { useSearchParams } from "next/navigation";
 import { API } from "../../api/index";
 import { EditableListItem } from "../../components/ui/EditableListItem";
 import { useFlashList } from "../../hooks/useList";
 
-export function List({ category } : { category: string }) {
-  const [list, refetch] = useFlashList(category);
+export function List() {
+  const searchParams = useSearchParams();
+  const category = searchParams.get('category') as string;
+  const [list, refetch] = useFlashList(category ?? 'work');
   
   return (
     <ul>
