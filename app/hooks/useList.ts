@@ -11,6 +11,10 @@ export function useFlashList<T = any>(model: Model) {
   const [flashList, setFlashList] = useState<T[]>([]);
 
   useEffect(() => {
+    if (model == null || model === '' || Array.isArray(model)) {
+      return;
+    }
+
     if (list == null) {
       return;
     }

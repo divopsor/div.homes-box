@@ -1,12 +1,18 @@
 // import { GtdTodoAPI } from "../api/index";
+import { useSearchParams } from "next/navigation";
 import { API } from "../api/index";
 import { useFlashList } from "../hooks/useList";
 import { Container } from "./ui/Container";
 import { TxtButton } from "./ui/TxtButton";
 
 export function MainMenus() {
-  const category = typeof window === 'undefined' ? '' : window.location.pathname.split('/').pop()!;
+  const searchParams = useSearchParams();
+  const category = searchParams.get('category') as string;
   const [todoList, refetchTodoList] = useFlashList(category);
+
+  if (category == null || Array.isArray(category) || category === '') {
+    return null;
+  }
 
   if (todoList == null || todoList.length === 0) {
     return null;

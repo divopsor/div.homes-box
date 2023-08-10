@@ -2,6 +2,7 @@
 module.exports = (phase, { defaultConfig }) => {
   const nextConfig = {
     output: 'export',
+    trailingSlash: true,
     // ...defaultConfig,
     reactStrictMode: true,
     swcMinify: true,
