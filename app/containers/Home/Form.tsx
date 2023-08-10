@@ -1,3 +1,5 @@
+'use client';
+
 import { API } from "../../api/index";
 import { TextAreaForm } from "../../components/ui/TextAreaForm";
 import { useFlashList } from "../../hooks/useList";

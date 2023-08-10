@@ -1,3 +1,5 @@
+'use client';
+
 import Link from "next/link";
 import { Txt } from "../../components/ui/Txt";
 import { useCategoryList } from "../../hooks/useList";

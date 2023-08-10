@@ -1,3 +1,5 @@
+'use client';
+
 const CreatiCoding = () => (
   <a href="https://github.com/creaticoding" target="_blank" rel="noreferrer">
     <span

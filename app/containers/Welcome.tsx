@@ -1,3 +1,5 @@
+'use client';
+
 import { Spacing } from "../components/ui/Space";
 import { Txt } from "../components/ui/Txt";
 

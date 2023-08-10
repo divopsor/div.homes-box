@@ -1,3 +1,5 @@
+'use client';
+
 import { API } from "../../api/index";
 import { EditableListItem } from "../../components/ui/EditableListItem";
 import { useFlashList } from "../../hooks/useList";

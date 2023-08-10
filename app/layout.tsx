@@ -1,3 +1,5 @@
+'use client';
+
 import { MainNav } from "./components/MainNav";
 import { Container } from "./components/ui/Container";
 import { Spacing } from "./components/ui/Space";
