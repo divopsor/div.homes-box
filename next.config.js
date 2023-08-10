@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 module.exports = (phase, { defaultConfig }) => {
   const nextConfig = {
-    trailingSlash: false,
+    trailingSlash: true,
     // ...defaultConfig,
     reactStrictMode: true,
     swcMinify: true,
