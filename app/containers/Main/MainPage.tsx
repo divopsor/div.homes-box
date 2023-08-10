@@ -1,12 +1,15 @@
 'use client';
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import { Spacing } from "../../components/ui/Space";
 import { Txt } from "../../components/ui/Txt";
 import { HomePage } from "../Home/HomePage";
 
-export const MainPage = ({ searchParams }: { searchParams: Record<string, string>}) => {
-  const { category } = searchParams;
+export const MainPage = () => {
+  const searchParams = useSearchParams();
+  const category = searchParams.get('category');
 
   if (category == null || Array.isArray(category)) {
     return (
