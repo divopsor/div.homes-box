@@ -1,17 +1,15 @@
-import { useRouter } from "next/navigation";
 import { Txt } from "../../components/ui/Txt";
 import { useCategoryList } from "../../hooks/useList";
 
 export function CategoryList() {
   const [list] = useCategoryList();
-  const router = useRouter();
 
   return (
     <>
       {
         Object.entries(list ?? []).map(([key, value]) => (
           <div style={{ cursor: 'pointer' }} key={key} onClick={() => {
-            router.push(`/?category=${value}`);
+            window.location.href = `/box?category=${value}`;
           }}>
             <Txt style={{ textAlign: 'center', fontSize: '2.4rem', fontWeight: 'bold' }}>
               {`👉 ${key} 보러가기`}
