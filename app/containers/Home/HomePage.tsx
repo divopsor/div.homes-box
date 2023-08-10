@@ -24,34 +24,20 @@ export const HomePage = () => {
 
   return (
     <main>
-      <Spacing size={60} />
-      <Stack.Horizontal style={{
-        gap: '100px',
-        alignItems: 'flex-start'
-      }}>
-        <Stack.Vertical style={{
-          width: '120px',
-        }}>
-          <Sidebar />
+      <Container width={720}>
+        <Stack.Vertical align='right'>
+          <Suspense>
+            <Form category={category} />
+          </Suspense>
         </Stack.Vertical>
 
-        <Stack.Vertical>
-          <Container width={720}>
-            <Stack.Vertical align='right'>
-              <Suspense>
-                <Form category={category} />
-              </Suspense>
-            </Stack.Vertical>
+        <Spacing size={20} />
 
-            <Spacing size={20} />
+        <Suspense>
+          <List category={category} />
+        </Suspense>
 
-            <Suspense>
-              <List category={category} />
-            </Suspense>
-
-          </Container>
-        </Stack.Vertical>
-      </Stack.Horizontal>
+      </Container>
     </main>
   );
 };
