@@ -17,7 +17,7 @@ export function Sidebar() {
       <ul>{
         (Object.entries(list) ?? []).map((x:any) => (
           <li key={x[1]}>
-            <Link href={`?category=${x[1]}`}>
+            <Link href={`?category=${x[1]}`} as={`?category=${x[1]}`}>
               <Txt style={{
                 fontWeight: x[1] === category ? 'bold' : 'unset',
                 textDecoration: x[1] === category ? 'underline' : 'unset',
