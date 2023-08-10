@@ -65,20 +65,21 @@ export const HomePage = ({ category }: { category: string }) => {
                       priority: b.body.priority,
                     };
 
-                    await API.of(category).updateItem(
-                      a.id,
-                      aResource,
-                    );
-
                     const bResource = {
                       contents: b.body.contents,
                       priority: a.body.priority,
                     };
 
-                    await API.of(category).updateItem(
-                      b.id,
-                      bResource,
-                    );
+                    await API.of(category).updateItems([
+                      {
+                        id: a.id,
+                        body: aResource,
+                      },
+                      {
+                        id: b.id,
+                        body: bResource,
+                      }
+                    ]);
 
                     await refetch();
                   },
@@ -94,20 +95,21 @@ export const HomePage = ({ category }: { category: string }) => {
                       priority: b.body.priority,
                     };
 
-                    await API.of(category).updateItem(
-                      a.id,
-                      aResource,
-                    );
-
                     const bResource = {
                       contents: b.body.contents,
                       priority: a.body.priority,
                     };
 
-                    await API.of(category).updateItem(
-                      b.id,
-                      bResource,
-                    );
+                    await API.of(category).updateItems([
+                      {
+                        id: a.id,
+                        body: aResource,
+                      },
+                      {
+                        id: b.id,
+                        body: bResource,
+                      }
+                    ]);
 
                     await refetch();
                   },

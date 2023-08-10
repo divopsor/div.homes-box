@@ -15,6 +15,9 @@ export const API = {
     updateItem: (id:string, contents: any) => {
       return post(`/api/gist/${category}/${id}/modify`, { contents });
     },
+    updateItems: (items: Array<{id: string; body:any}>) => {
+      return post(`/api/gist/${category}/list/modify`, { items });
+    },
     deleteItem: (id:string) => {
       return post(`/api/gist/${category}/${id}/delete`);
     },

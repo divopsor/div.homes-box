@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = (phase, { defaultConfig }) => {
   const nextConfig = {
-    output: 'export',
     trailingSlash: true,
     // ...defaultConfig,
     reactStrictMode: true,
@@ -19,6 +18,17 @@ module.exports = (phase, { defaultConfig }) => {
       // your project has ESLint errors.
       ignoreDuringBuilds: true,
     },
+    output: process.env.LOCAL === 'true' ? null : 'export',
+    redirects: process.env.LOCAL === 'true' ? async () => {
+      return [
+        {
+          source: '/',
+          destination: '/box',
+          permanent: false,
+          basePath: false,
+        }
+      ];
+    }: null,
   };
 
   return nextConfig;
