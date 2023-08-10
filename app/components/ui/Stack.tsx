@@ -1,15 +1,17 @@
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
 
 interface StackProps {
   children: ReactNode;
   className?: string;
   align?: "left" | "center" | "right" | "space-between";
+  style?: CSSProperties;
 }
 
 function StackHorizontal({
   children,
   className,
   align = "center",
+  style,
 }: StackProps) {
   return (
     <div
@@ -18,6 +20,7 @@ function StackHorizontal({
         display: 'flex',
         justifyContent: `${align}`,
         alignItems: 'center',
+        ...(style ?? {}),
       }}
     >
       {children}
@@ -25,7 +28,7 @@ function StackHorizontal({
   );
 }
 
-function StackVertical({ children, className, align = "center" }: StackProps) {
+function StackVertical({ children, className, align = "center", style }: StackProps) {
   return (
     <div
       className={className}
@@ -37,6 +40,7 @@ function StackVertical({ children, className, align = "center" }: StackProps) {
           : align === "left"
           ? "start"
           : "center"}`,
+        ...(style ?? {}),
       }}
     >
       {children}

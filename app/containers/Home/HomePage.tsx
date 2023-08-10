@@ -1,33 +1,57 @@
 'use client';
 
-import { Suspense } from "react";
-import { Container } from "../../components/ui/Container";
-import { Spacing } from "../../components/ui/Space";
-import { Stack } from "../../components/ui/Stack";
-import { Form } from "./Form";
-import { List } from "./List";
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense, useEffect } from 'react';
+import { Container } from '../../components/ui/Container';
+import { Spacing } from '../../components/ui/Space';
+import { Stack } from '../../components/ui/Stack';
+import { useCategoryList } from '../../hooks/useList';
+import { Form } from './Form';
+import { List } from './List';
+import { Sidebar } from './Sidebar';
 
-export const HomePage = ({ category }: { category: string }) => {
+export const HomePage = () => {
+  const [list] = useCategoryList();
+  const searchParams = useSearchParams();
+  const category = searchParams.get('category')!;
+  const router = useRouter();
+
+  useEffect(() => {
+    if (category == null || category === '' || category === 'undefined') {
+      router.push(`/?category=${Object.values(list)[0]}`);
+    }
+  }, [category, list])
+
   return (
     <main>
-      <Spacing size={30} />
-
-      <Spacing size={30} />
-
-      <Container width={720}>
-        <Stack.Vertical align="right">
-          <Suspense>
-            <Form category={category} />
-          </Suspense>
+      <Spacing size={60} />
+      <Stack.Horizontal style={{
+        gap: '100px',
+        alignItems: 'flex-start'
+      }}>
+        <Stack.Vertical style={{
+          width: '120px',
+        }}>
+          <Sidebar />
         </Stack.Vertical>
 
-        <Spacing size={20} />
+        <Stack.Vertical>
+          <Container width={720}>
+            <Stack.Vertical align='right'>
+              <Suspense>
+                <Form category={category} />
+              </Suspense>
+            </Stack.Vertical>
 
-        <Suspense>
-          <List category={category} />
-        </Suspense>
+            <Spacing size={20} />
 
-      </Container>
+            <Suspense>
+              <List category={category} />
+            </Suspense>
+
+          </Container>
+        </Stack.Vertical>
+      </Stack.Horizontal>
     </main>
   );
 };

@@ -1,5 +1,9 @@
+import Link from "next/link";
+
 export function MainNav() {
   return (
-    <h1>My Box</h1>
+    <Link href="/">
+      <h1>My Box</h1>
+    </Link>
   );
 }

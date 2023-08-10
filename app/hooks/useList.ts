@@ -16,9 +16,7 @@ export function useFlashList<T = any>(model: Model) {
         `useFlashList-${model}`
       ) ?? '[]');
 
-      if (list.length > 0) {
-        setFlashList(list);
-      }
+      setFlashList(list);
     }
   }, []);
 
@@ -28,10 +26,6 @@ export function useFlashList<T = any>(model: Model) {
     }
 
     if (list == null) {
-      return;
-    }
-
-    if (list.length === 0) {
       return;
     }
 

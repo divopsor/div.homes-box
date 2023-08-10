@@ -3,6 +3,9 @@ import axios from 'axios';
 export const API = {
   of: (category: string) => ({
     readList: async () => {
+      if (category == null || category === '' || category === 'undefined') {
+        return [];
+      }
       const { data } = await get(`/api/gist/${category}/list`);
       return data.items;
     },

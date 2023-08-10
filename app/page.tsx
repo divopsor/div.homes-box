@@ -1,2 +1,3 @@
 'use client';
-export { MainPage as default } from "./containers/Main/MainPage";
+
+export { HomePage as default } from "./containers/Home/HomePage";
