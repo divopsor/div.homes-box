@@ -14,7 +14,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Container width={1200}>
-          <Spacing size={10} />
+          <Spacing size={20} />
           <MainNav />
           <Providers>{children}</Providers>
           <Footer />

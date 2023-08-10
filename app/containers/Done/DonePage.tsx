@@ -5,10 +5,10 @@ import { Container } from "../../components/ui/Container";
 import { EditableListItem } from "../../components/ui/EditableListItem";
 import { Spacing } from "../../components/ui/Space";
 import { Txt } from "../../components/ui/Txt";
-import { useList } from "../../hooks/useList";
+import { useFlashList } from "../../hooks/useList";
 
 export const DonePage: NextPage = () => {
-  const [todoList, refetchTodoList] = useList("done");
+  const [todoList, refetchTodoList] = useFlashList("done");
 
   return (
     <main>

@@ -1,3 +1,7 @@
+export const Category: Record<string, string> = {
+  work: 'e396a261fcaa122a6544de06f8b74653',
+}
+
 export const GLOBAL_CSS = `
 /* http://meyerweb.com/eric/tools/css/reset/
    v5.0.1 | 20191019

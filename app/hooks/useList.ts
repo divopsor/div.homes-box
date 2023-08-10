@@ -11,6 +11,18 @@ export function useFlashList<T = any>(model: Model) {
   const [flashList, setFlashList] = useState<T[]>([]);
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      const list = JSON.parse(window?.localStorage?.getItem(
+        `useFlashList-${model}`
+      ) ?? '[]');
+
+      if (list.length > 0) {
+        setFlashList(list);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     if (model == null || model === '' || Array.isArray(model)) {
       return;
     }
