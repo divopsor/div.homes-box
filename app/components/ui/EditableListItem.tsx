@@ -79,6 +79,7 @@ export function EditableListItem({
               }
               right={Object.entries(editButtons).map(([name, onClick]) => (
                 <TxtButton
+                  key={name}
                   css={{
                     alignItems: 'flex-start',
                     paddingTop: '5px',

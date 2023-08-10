@@ -1,20 +1,15 @@
-// import { GtdTodoAPI } from "../api/index";
 import { useSearchParams } from "next/navigation";
 import { API } from "../api/index";
-import { useFlashList } from "../hooks/useList";
+import { useList } from "../hooks/useList";
 import { Container } from "./ui/Container";
 import { TxtButton } from "./ui/TxtButton";
 
 export function MainMenus() {
   const searchParams = useSearchParams();
-  const category = searchParams.get('category') as string;
-  const [todoList, refetchTodoList] = useFlashList(category);
+  const category = searchParams.get('category')!;
+  const [list, refetch] = useList(category);
 
   if (category == null || Array.isArray(category) || category === '') {
-    return null;
-  }
-
-  if (todoList == null || todoList.length === 0) {
     return null;
   }
 
@@ -29,13 +24,13 @@ export function MainMenus() {
           padding: '0',
         }}
         onClick={async () => {
-          if (todoList == null || todoList.length === 0) {
+          if (list == null || list.length === 0) {
             alert("잠시 후 다시 시도해주세요.");
             return;
           }
 
-          for (let i = 0; i < todoList.length; i++) {
-            const todo = todoList[i];
+          for (let i = 0; i < list.length; i++) {
+            const todo = list[i];
 
             if (Number(todo.priority) === i) {
               continue;
@@ -52,7 +47,7 @@ export function MainMenus() {
             );
           }
 
-          await refetchTodoList();
+          await refetch();
         }}
       >
         재정렬

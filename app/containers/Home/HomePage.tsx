@@ -7,10 +7,10 @@ import { EditableListItem } from "../../components/ui/EditableListItem";
 import { Spacing } from "../../components/ui/Space";
 import { Stack } from "../../components/ui/Stack";
 import { TextAreaForm } from "../../components/ui/TextAreaForm";
-import { useFlashList } from "../../hooks/useList";
+import { useList } from "../../hooks/useList";
 
 export const HomePage = ({ category }: { category: string }) => {
-  const [todoList, refetchTodoList] = useFlashList(category);
+  const [list, refetch] = useList(category);
 
   return (
     <main>
@@ -26,10 +26,10 @@ export const HomePage = ({ category }: { category: string }) => {
             onSubmit={async (inputText) => {
               const resource = {
                 contents: inputText,
-                priority: todoList.length,
+                priority: list.length,
               };
               await API.of(category).createItem(resource);
-              await refetchTodoList();
+              await refetch();
             }}
           />
         </Stack.Vertical>
@@ -37,9 +37,9 @@ export const HomePage = ({ category }: { category: string }) => {
         <Spacing size={20} />
 
         <ul>
-          {todoList
+          {list
             .sort((a: any, b: any) =>
-              (a.body.priority ?? 0) > (b.body.priority ?? 0) ? 1 : -1
+              (a.body.priority ?? 0) > (b.body.priority ?? 0) ? -1 : 1
             )
             .map((data: any, index: number) => (
               <EditableListItem
@@ -51,14 +51,14 @@ export const HomePage = ({ category }: { category: string }) => {
                   삭제: async () => {
                     await API.of(category).deleteItem(data.id);
                     await new Promise(r => setTimeout(r, 1000));
-                    await refetchTodoList();
+                    await refetch();
                   },
                   "⬆": async () => {
                     if (index <= 0) {
                       return;
                     }
-                    const a = todoList[index];
-                    const b = todoList[index - 1];
+                    const a = list[index];
+                    const b = list[index - 1];
 
                     const aResource = {
                       contents: a.body.contents,
@@ -80,14 +80,14 @@ export const HomePage = ({ category }: { category: string }) => {
                       bResource,
                     );
 
-                    await refetchTodoList();
+                    await refetch();
                   },
                   "⬇": async () => {
-                    if (index >= todoList.length - 1) {
+                    if (index >= list.length - 1) {
                       return;
                     }
-                    const a = todoList[index];
-                    const b = todoList[index + 1];
+                    const a = list[index];
+                    const b = list[index + 1];
 
                     const aResource = {
                       contents: a.body.contents,
@@ -109,25 +109,25 @@ export const HomePage = ({ category }: { category: string }) => {
                       bResource,
                     );
 
-                    await refetchTodoList();
+                    await refetch();
                   },
                 }}
                 editButtons={{
                   제출: async ({ text, setMode }) => {
                     const resource = {
                       contents: text,
-                      priority: data.priority,
+                      priority: data.body.priority,
                     };
                     await API.of(category).updateItem(
                       data.id,
                       resource,
                     );
 
-                    await refetchTodoList();
+                    await refetch();
                     setMode("view");
                   },
                   취소: ({ setText, setMode }) => {
-                    setText(data.contents);
+                    setText(data.body.contents);
                     setMode("view");
                   },
                 }}
