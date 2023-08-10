@@ -36,12 +36,12 @@ export function List() {
                 const b = list[index - 1];
 
                 const aResource = {
-                  contents: a.body.contents,
+                  ...a.body,
                   priority: b.body.priority,
                 };
 
                 const bResource = {
-                  contents: b.body.contents,
+                  ...b.body,
                   priority: a.body.priority,
                 };
 
@@ -66,12 +66,12 @@ export function List() {
                 const b = list[index + 1];
 
                 const aResource = {
-                  contents: a.body.contents,
+                  ...a.body,
                   priority: b.body.priority,
                 };
 
                 const bResource = {
-                  contents: b.body.contents,
+                  ...b.body,
                   priority: a.body.priority,
                 };
 
@@ -92,9 +92,11 @@ export function List() {
             editButtons={{
               제출: async ({ text, setMode }) => {
                 const resource = {
+                  ...data.body,
                   contents: text,
-                  priority: data.body.priority,
+                  updatedAt: Date.now(),
                 };
+
                 await API.of(category).updateItem(
                   data.id,
                   resource,

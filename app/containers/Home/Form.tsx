@@ -16,6 +16,7 @@ export function Form() {
         const resource = {
           contents: inputText,
           priority: list.length,
+          createdAt: Date.now(),
         };
         await API.of(category).createItem(resource);
         await refetch();

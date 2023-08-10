@@ -6,10 +6,11 @@ interface ListItemProps {
   id?: string;
   left: ReactNode;
   right: ReactNode;
+  bottom?: ReactNode;
   style?: CSSProperties;
 }
 
-export function ListItem({ style, id, className, left, right }: ListItemProps) {
+export function ListItem({ style, id, className, left, right, bottom }: ListItemProps) {
   return (
     <li
       key={id}
@@ -19,10 +20,15 @@ export function ListItem({ style, id, className, left, right }: ListItemProps) {
         ...(style ?? {}),
       }}
     >
-      <Stack.Horizontal>
+      <Stack.Horizontal 
+        style={{
+          alignItems: 'baseline'
+        }}
+      >
         {left}
         {right}
       </Stack.Horizontal>
+      {bottom}
     </li>
   );
 }

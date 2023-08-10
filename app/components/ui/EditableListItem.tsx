@@ -16,7 +16,7 @@ interface Buttons {
 
 interface EditableListItemProps {
   id: string;
-  data: { id: string; contents: string };
+  data: { id: string; contents: string, createdAt: number; updatedAt?: number };
   viewButtons: Buttons;
   editButtons?: Buttons;
 }
@@ -55,6 +55,15 @@ export function EditableListItem({
                 {name}
               </TxtButton>
             ))}
+            bottom={
+              <TextArea.View 
+                style={{ 
+                  textAlign: 'right',
+                  fontSize: '1rem',
+                }} 
+                value={new Date(data.updatedAt ?? data.createdAt).toLocaleString()} 
+              />
+            }
           />
         ),
         edit:
