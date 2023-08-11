@@ -8,6 +8,7 @@ interface TextAreaProps {
   setValue: (_: string) => void;
   rows?: number;
   cols?: number;
+  onClick?: () => void;
 }
 export function TextArea({
   className,
@@ -38,7 +39,7 @@ export function TextArea({
   );
 }
 
-TextArea.View = ({ value, style }: Pick<TextAreaProps, "value" | "style">) => {
+TextArea.View = ({ value, style, onClick }: Pick<TextAreaProps, "value" | "style" | "onClick">) => {
   if (value == null) {
     return null;
   }
@@ -49,6 +50,7 @@ TextArea.View = ({ value, style }: Pick<TextAreaProps, "value" | "style">) => {
         padding: '3px',
         ...(style ?? {}),
       }}
+      onClick={onClick}
     >
       {value.replace(
         /(https?:\/\/\S+)/g,

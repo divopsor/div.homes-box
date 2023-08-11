@@ -4,9 +4,10 @@ interface TxtProps {
   className?: string;
   children: ReactNode;
   style?: CSSProperties;
+  onClick?: () => void;
 }
 
-export function Txt({ style, className, children }: TxtProps) {
+export function Txt({ style, className, children, onClick }: TxtProps) {
   return (
     <p
       className={className}
@@ -18,6 +19,7 @@ export function Txt({ style, className, children }: TxtProps) {
         ...(style ?? {}),
       }}
       dangerouslySetInnerHTML={{ __html: `${children}` }}
+      onClick={onClick}
     />
   );
 }

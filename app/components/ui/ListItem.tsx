@@ -22,11 +22,24 @@ export function ListItem({ style, id, className, left, right, bottom }: ListItem
     >
       <Stack.Horizontal 
         style={{
-          alignItems: 'baseline'
+          alignItems: 'baseline',
+          justifyContent: 'space-between'
         }}
       >
-        {left}
-        {right}
+        <Stack.Horizontal 
+          style={{
+            alignItems: 'baseline'
+          }}
+        >
+          {left}
+        </Stack.Horizontal>
+        <Stack.Horizontal 
+          style={{
+            alignItems: 'baseline'
+          }}
+        >
+          {right}
+        </Stack.Horizontal>
       </Stack.Horizontal>
       {bottom}
     </li>
