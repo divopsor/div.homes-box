@@ -1,11 +1,12 @@
 'use client';
 
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { API } from "../../api/index";
 import { EditableListItem } from "../../components/ui/EditableListItem";
 import { useFlashList } from "../../hooks/useList";
 
 export function List() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const category = searchParams.get('category') as string;
   const [list, refetch] = useFlashList(category ?? 'work');
@@ -24,14 +25,21 @@ export function List() {
             viewButtons={{
               수정: ({ setMode }) => setMode("edit"),
               삭제: async () => {
-                await API.of(category).deleteItem(data.id);
-                await new Promise(r => setTimeout(r, 1000));
-                await refetch();
+                try {
+                  await API.of(category).deleteItem(data.id);
+                  await new Promise(r => setTimeout(r, 1000));
+                  await refetch();
+                } catch (error:any) {
+                  if (error.response.data.message === 'Not Allowed') {
+                    router.push('/login');
+                  }
+                }
               },
               "⬆": async () => {
                 if (index <= 0) {
                   return;
                 }
+
                 const a = list[index];
                 const b = list[index - 1];
 
@@ -45,18 +53,24 @@ export function List() {
                   priority: a.body.priority,
                 };
 
-                await API.of(category).updateItems([
-                  {
-                    id: a.id,
-                    body: aResource,
-                  },
-                  {
-                    id: b.id,
-                    body: bResource,
+                try {
+                  await API.of(category).updateItems([
+                    {
+                      id: a.id,
+                      body: aResource,
+                    },
+                    {
+                      id: b.id,
+                      body: bResource,
+                    }
+                  ]);
+  
+                  await refetch();
+                } catch (error:any) {
+                  if (error.response.data.message === 'Not Allowed') {
+                    router.push('/login');
                   }
-                ]);
-
-                await refetch();
+                }
               },
               "⬇": async () => {
                 if (index >= list.length - 1) {
@@ -75,35 +89,47 @@ export function List() {
                   priority: a.body.priority,
                 };
 
-                await API.of(category).updateItems([
-                  {
-                    id: a.id,
-                    body: aResource,
-                  },
-                  {
-                    id: b.id,
-                    body: bResource,
+                try {
+                  await API.of(category).updateItems([
+                    {
+                      id: a.id,
+                      body: aResource,
+                    },
+                    {
+                      id: b.id,
+                      body: bResource,
+                    }
+                  ]);
+  
+                  await refetch();
+                } catch (error:any) {
+                  if (error.response.data.message === 'Not Allowed') {
+                    router.push('/login');
                   }
-                ]);
-
-                await refetch();
+                }
               },
             }}
             editButtons={{
               제출: async ({ text, setMode }) => {
-                const resource = {
-                  ...data.body,
-                  contents: text,
-                  updatedAt: Date.now(),
-                };
+                try {
+                  const resource = {
+                    ...data.body,
+                    contents: text,
+                    updatedAt: Date.now(),
+                  };
 
-                await API.of(category).updateItem(
-                  data.id,
-                  resource,
-                );
+                  await API.of(category).updateItem(
+                    data.id,
+                    resource,
+                  );
 
-                await refetch();
-                setMode("view");
+                  await refetch();
+                  setMode("view");
+                } catch (error:any) {
+                  if (error.response.data.message === 'Not Allowed') {
+                    router.push('/login');
+                  }
+                }
               },
               취소: ({ setText, setMode }) => {
                 setText(data.body.contents);

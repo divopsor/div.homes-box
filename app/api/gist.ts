@@ -31,7 +31,7 @@ export const API = {
   }
 }
 
-const BASE_URL = `https://app.divops.kr/github-api`;
+const BASE_URL = '';
 
 async function get(url: string) {
   const { data } = await axios.get(`${BASE_URL}${url}`);

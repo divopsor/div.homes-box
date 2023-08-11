@@ -78,13 +78,13 @@ export function useList(model?: Model) {
 
 export function useFlashCategoryList() {
   const [list, refetch, isLoading, isFetching] = useCategoryList();
-  const [flashList, setFlashList] = useState<any>([]);
+  const [flashList, setFlashList] = useState<any>({});
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const list = JSON.parse(window?.localStorage?.getItem(
         `useFlashCategoryList`
-      ) ?? '[]');
+      ) ?? '{}');
 
       setFlashList(list);
     }
@@ -118,7 +118,7 @@ export function useCategoryList() {
     ["useCategoryList"],
     API.getList,
     {
-      initialData: [],
+      initialData: {},
     }
   );
 
