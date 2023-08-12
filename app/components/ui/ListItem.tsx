@@ -26,20 +26,8 @@ export function ListItem({ style, id, className, left, right, bottom }: ListItem
           justifyContent: 'space-between'
         }}
       >
-        <Stack.Horizontal 
-          style={{
-            alignItems: 'baseline'
-          }}
-        >
-          {left}
-        </Stack.Horizontal>
-        <Stack.Horizontal 
-          style={{
-            alignItems: 'baseline'
-          }}
-        >
-          {right}
-        </Stack.Horizontal>
+        {left}
+        {right}
       </Stack.Horizontal>
       {bottom}
     </li>
