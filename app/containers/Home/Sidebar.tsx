@@ -14,7 +14,7 @@ export function Sidebar() {
 
   useEffect(() => {
     if (category == null && Object.entries(list).length > 0) {
-      router.push(`?category=${Object.entries(list)[0][1]}`)
+      router.replace(`?category=${Object.entries(list)[0][1]}`)
     }
   }, [category, list])
 

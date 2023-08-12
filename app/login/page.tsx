@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container } from "../components/ui/Container";
 import { Stack } from "../components/ui/Stack";
 
@@ -10,6 +10,17 @@ export default function AdminPage () {
   const router = useRouter();
   const [id, setId] = useState<string>();
   const [pw, setPw] = useState<string>();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        await axios.get(`/api/gist/health`);
+        router.push('/');
+      } catch {
+        return;
+      }
+    })()
+  }, [])
 
   return (
     <main>
@@ -22,7 +33,7 @@ export default function AdminPage () {
           <br />
           <button onClick={async () => {
             await axios.post(`/api/gist/login`, { id, password: pw });
-            router.back();
+            router.push('/');
           }}>로그인</button>
         </Stack.Vertical>
       </Stack.Vertical>
