@@ -43,7 +43,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tanstack/react-query", "virtual:d68c1f9263201d2dd7511285d9c31084cd0b67bc381e44ba430a3def9718a3af6c8bafff9e2200a39d3d8ddbf44d7379dbdd1ae2a7a016dd22ddd74bdcb8e0bc#npm:4.32.6"],\
             ["@types/babel__core", "npm:7.20.1"],\
             ["@types/eslint", "npm:8.44.2"],\
-            ["@types/node", "npm:18.17.4"],\
+            ["@types/node", "npm:18.17.5"],\
             ["@types/react", "npm:18.2.20"],\
             ["@types/react-dom", "npm:18.2.7"],\
             ["@typescript-eslint/eslint-plugin", "virtual:d68c1f9263201d2dd7511285d9c31084cd0b67bc381e44ba430a3def9718a3af6c8bafff9e2200a39d3d8ddbf44d7379dbdd1ae2a7a016dd22ddd74bdcb8e0bc#npm:5.62.0"],\
@@ -363,7 +363,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tanstack/react-query", "virtual:d68c1f9263201d2dd7511285d9c31084cd0b67bc381e44ba430a3def9718a3af6c8bafff9e2200a39d3d8ddbf44d7379dbdd1ae2a7a016dd22ddd74bdcb8e0bc#npm:4.32.6"],\
             ["@types/babel__core", "npm:7.20.1"],\
             ["@types/eslint", "npm:8.44.2"],\
-            ["@types/node", "npm:18.17.4"],\
+            ["@types/node", "npm:18.17.5"],\
             ["@types/react", "npm:18.2.20"],\
             ["@types/react-dom", "npm:18.2.7"],\
             ["@typescript-eslint/eslint-plugin", "virtual:d68c1f9263201d2dd7511285d9c31084cd0b67bc381e44ba430a3def9718a3af6c8bafff9e2200a39d3d8ddbf44d7379dbdd1ae2a7a016dd22ddd74bdcb8e0bc#npm:5.62.0"],\
@@ -806,10 +806,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@types/node", [\
-        ["npm:18.17.4", {\
-          "packageLocation": "./.yarn/cache/@types-node-npm-18.17.4-7b6cd3731e-d4c458202d.zip/node_modules/@types/node/",\
+        ["npm:18.17.5", {\
+          "packageLocation": "./.yarn/cache/@types-node-npm-18.17.5-e736eb2acc-b8c658a992.zip/node_modules/@types/node/",\
           "packageDependencies": [\
-            ["@types/node", "npm:18.17.4"]\
+            ["@types/node", "npm:18.17.5"]\
           ],\
           "linkType": "HARD"\
         }]\
