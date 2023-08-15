@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import { Spacing } from "./Space";
 import { TextArea } from "./TextArea";
 
@@ -7,12 +7,13 @@ interface TextAreaFormProps {
   onSubmit: (inputText: string) => void | Promise<void>;
 }
 
-export function TextAreaForm({ defaultText, onSubmit }: TextAreaFormProps) {
+export const TextAreaForm = forwardRef<HTMLTextAreaElement, TextAreaFormProps>(({ defaultText, onSubmit }, ref) => {
   const [inputText, setInputText] = useState<string>(defaultText ?? "");
 
   return (
     <>
       <TextArea
+        ref={ref}
         value={inputText}
         setValue={setInputText}
         rows={Math.max(2, inputText.split("\n").length)}
@@ -31,4 +32,4 @@ export function TextAreaForm({ defaultText, onSubmit }: TextAreaFormProps) {
       </button>
     </>
   );
-}
+});

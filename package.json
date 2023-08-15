@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.19.1",
+    "@divops-packages/ui": "^0.1.4",
     "@tanstack/react-query": "^4.32.6",
     "axios": "^1.4.0",
     "next": "^13",

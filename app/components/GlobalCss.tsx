@@ -1,5 +1,3 @@
-'use client';
-
 import { GLOBAL_CSS } from "../constants"
 
 export const GlobalCss = () => {

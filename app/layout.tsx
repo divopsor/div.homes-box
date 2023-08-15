@@ -1,6 +1,5 @@
 'use client';
 
-import { MainNav } from "./components/MainNav";
 import { Container } from "./components/ui/Container";
 import { Spacing } from "./components/ui/Space";
 import Providers from "./providers";
@@ -8,6 +7,7 @@ import Footer from "./components/Footer";
 import { GlobalCss } from "./components/GlobalCss";
 import { Stack } from "./components/ui/Stack";
 import { Sidebar } from "./containers/Home/Sidebar";
+import { Header } from "./components/Header";
 
 export default function RootLayout({
   children,
@@ -15,11 +15,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body>
         <Container width={1200}>
-          <Spacing size={20} />
-          <MainNav />
+          <Header />
+
           <Providers>
             <Spacing size={60} />
             <Stack.Horizontal style={{
