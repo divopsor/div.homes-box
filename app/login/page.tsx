@@ -2,24 +2,14 @@
 
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { Container } from "../components/ui/Container";
 import { Stack } from "../components/ui/Stack";
-import { AuthContext } from "../providers";
 
 export default function AdminPage () {
   const router = useRouter();
   const [id, setId] = useState<string>();
   const [pw, setPw] = useState<string>();
-  const auth = useContext(AuthContext);
-
-  useEffect(() => {
-    if (auth) {
-      return;
-    }
-
-    router.push('/');
-  }, [auth]);
 
   return (
     <main>
