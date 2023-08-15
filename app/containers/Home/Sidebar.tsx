@@ -16,7 +16,11 @@ export function Sidebar() {
 
   const goCategory = async (no: number) => {
     const list = await API.getList();
-    router.replace(`?category=${Object.entries(list)[no - 1][1]}`);
+    const category = Object.entries(list)?.[no - 1]?.[1];
+
+    if (category != null) {
+      router.replace(`?category=${category}`);
+    }
   }
 
   useEffect(() => {
@@ -26,10 +30,12 @@ export function Sidebar() {
   }, [category, list]);
 
   useMetaKeyShortcut({
-    '1': () => goCategory(1),
-    '2': () => goCategory(2),
-    '3': () => goCategory(3),
-    '4': () => goCategory(4),
+    ...(new Array(9)).fill(0).reduce((acc, _, index) => {
+      return {
+        ...acc,
+        [index]: () => goCategory(index),
+      }
+    }, {}),
   });
 
   return (
