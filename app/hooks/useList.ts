@@ -61,10 +61,19 @@ export function useList(model?: Model) {
       if (model == null) {
         return [];
       }
+      try {
 
-      const data = await API.of(model).readList();
+        const data = await API.of(model).readList();
+        
+        return data;
+      } catch (error:any) {
+        if (error.response?.data?.message === "Not Allowed") {
+          window.location.href = '/box';
+          return;
+        }
 
-      return data;
+        alert(error.message);
+      }
     },
     {
       initialData: [],
