@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
+import { API } from "../../api/gist";
 import { Txt } from "../../components/ui/Txt";
 import { useFlashCategoryList } from "../../hooks/useList";
+import { useMetaKeyShortcut } from "../../hooks/useMetaKeyShortcut";
 
 export function Sidebar() {
   const router = useRouter();
@@ -12,11 +14,23 @@ export function Sidebar() {
   const searchParams = useSearchParams();
   const category = searchParams.get('category')!;
 
+  const goCategory = async (no: number) => {
+    const list = await API.getList();
+    router.replace(`?category=${Object.entries(list)[no - 1][1]}`);
+  }
+
   useEffect(() => {
     if (category == null && Object.entries(list).length > 0) {
       router.replace(`?category=${Object.entries(list)[0][1]}`)
     }
-  }, [category, list])
+  }, [category, list]);
+
+  useMetaKeyShortcut({
+    '1': () => goCategory(1),
+    '2': () => goCategory(2),
+    '3': () => goCategory(3),
+    '4': () => goCategory(4),
+  });
 
   return (
     <div style={{

@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { CSSProperties, forwardRef } from "react";
 import { Txt } from "./Txt";
 
 interface TextAreaProps {
@@ -10,16 +10,17 @@ interface TextAreaProps {
   cols?: number;
   onClick?: () => void;
 }
-export function TextArea({
+const TextAreaImpl = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
   className,
   style,
   setValue,
   value,
   rows,
   cols,
-}: TextAreaProps) {
+}, ref) => {
   return (
     <textarea
+      ref={ref}
       className={className}
       spellCheck={false}
       style={{
@@ -37,9 +38,11 @@ export function TextArea({
       onChange={(e) => setValue(e.target.value)}
     />
   );
-}
+});
 
-TextArea.View = ({ value, style, onClick }: Pick<TextAreaProps, "value" | "style" | "onClick">) => {
+TextAreaImpl.displayName = 'TextArea';
+
+const TextAreaView = ({ value, style, onClick }: Pick<TextAreaProps, "value" | "style" | "onClick">) => {
   if (value == null) {
     return null;
   }
@@ -59,3 +62,5 @@ TextArea.View = ({ value, style, onClick }: Pick<TextAreaProps, "value" | "style
     </Txt>
   );
 };
+
+export const TextArea = Object.assign(TextAreaImpl, { View: TextAreaView });
