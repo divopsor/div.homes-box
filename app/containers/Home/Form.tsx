@@ -12,7 +12,7 @@ export function Form() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const category = searchParams.get('category') as string;
-  const [list, refetch] = useFlashList(category ?? 'work');
+  const [list, refetch] = useFlashList(category ?? 'knowledge');
   const ref = useRef<HTMLTextAreaElement>(null);
   const [guest, setGestMode] = useState(false);
 

@@ -9,7 +9,7 @@ export function List() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const category = searchParams.get('category') as string;
-  const [list, refetch] = useFlashList(category ?? 'work');
+  const [list, refetch] = useFlashList(category ?? 'knowledge');
   
   return (
     <ul>
