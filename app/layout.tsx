@@ -16,6 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
+      {/* add this */}
+      <head>
+        <link rel='icon' href='/box/favicon.ico'/>
+        <title>creco's box</title>
+      </head>
       <body>
         <Container width={1200}>
           <Header />

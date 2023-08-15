@@ -40,7 +40,7 @@ export function EditableListItem({
         detail: (
           <ListItem
             style={{
-              backgroundColor: 'gainsboro',
+              backgroundColor: '#e8e8e8',
               padding: '6px',
               marginBottom: '12px',
               border: '1px solid #efefef',
