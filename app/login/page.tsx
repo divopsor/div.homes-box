@@ -3,6 +3,7 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { API } from "../api/gist";
 import { Container } from "../components/ui/Container";
 import { Stack } from "../components/ui/Stack";
 
@@ -14,7 +15,7 @@ export default function AdminPage () {
   useEffect(() => {
     (async () => {
       try {
-        await axios.get(`/api/gist/health`);
+        await API.authCheck();
         router.push('/');
       } catch {
         return;

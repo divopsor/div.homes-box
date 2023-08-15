@@ -1,7 +1,7 @@
-import { CSSProperties, forwardRef } from "react";
+import { CSSProperties, forwardRef, TextareaHTMLAttributes } from "react";
 import { Txt } from "./Txt";
 
-interface TextAreaProps {
+interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   className?: string;
   style?: CSSProperties;
   value: string;
@@ -9,6 +9,7 @@ interface TextAreaProps {
   rows?: number;
   cols?: number;
   onClick?: () => void;
+  onFocus?: () => void;
 }
 const TextAreaImpl = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
   className,
@@ -17,6 +18,8 @@ const TextAreaImpl = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
   value,
   rows,
   cols,
+  onFocus,
+  ...restProps
 }, ref) => {
   return (
     <textarea
@@ -36,6 +39,8 @@ const TextAreaImpl = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
       rows={rows ?? value.split("\n").length}
       cols={cols}
       onChange={(e) => setValue(e.target.value)}
+      onFocus={onFocus}
+      {...restProps}
     />
   );
 });

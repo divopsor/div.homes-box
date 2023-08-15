@@ -28,6 +28,9 @@ export const API = {
   getList: async () => {
     const { data } = await get(`/api/gist/category`);
     return data;
+  },
+  authCheck: async () => {
+    await get(`/api/gist/health`);
   }
 }
 

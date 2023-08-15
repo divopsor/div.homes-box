@@ -1,7 +1,8 @@
 'use client';
 
+import axios from "axios";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { API } from "../../api/index";
 import { TextAreaForm } from "../../components/ui/TextAreaForm";
 import { useFlashList } from "../../hooks/useList";
@@ -13,6 +14,7 @@ export function Form() {
   const category = searchParams.get('category') as string;
   const [list, refetch] = useFlashList(category ?? 'work');
   const ref = useRef<HTMLTextAreaElement>(null);
+  const [guest, setGestMode] = useState(false);
 
   useMetaKeyShortcut({
     'k': () => ref.current?.focus()
@@ -20,6 +22,8 @@ export function Form() {
 
   return (
     <TextAreaForm
+      placeholder={guest ? '권한이 없습니다.': ''}
+      disabled={guest}
       ref={ref}
       onSubmit={async (inputText) => {
         const resource = {
@@ -34,6 +38,14 @@ export function Form() {
           if (error.response.data.message === 'Not Allowed') {
             router.push('/login');
           }
+        }
+      }}
+      onFocus={async () => {
+        try {
+          await API.authCheck();
+          setGestMode(false);
+        } catch {
+          setGestMode(true);
         }
       }}
     />
