@@ -6,7 +6,7 @@ interface TextAreaFormProps {
   style?: CSSProperties;
   defaultText?: string;
   onSubmit: (inputText: string) => void | Promise<void>;
-  onFocus: () => void | Promise<void>;
+  onFocus?: () => void | Promise<void>;
   placeholder?: string;
   disabled?: boolean;
 }

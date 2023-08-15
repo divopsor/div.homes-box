@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Switch } from './Switch';
 import { TextArea } from './TextArea';
 import { ListItem } from './ListItem';
 import { TxtButton } from './TxtButton';
 import { Stack } from './Stack';
+import { AuthContext } from '../../providers';
 
 interface Buttons {
   [name: string]: (_: {
@@ -30,6 +31,7 @@ export function EditableListItem({
 }: EditableListItemProps) {
   const [text, setText] = useState<string>(data.contents);
   const [mode, setMode] = useState<'view' | 'edit' | 'detail'>('view');
+  const auth = useContext(AuthContext);
 
   return (
     <Switch
@@ -50,18 +52,20 @@ export function EditableListItem({
                 value={text} 
               />
             }
-            right={Object.entries(viewButtons).map(([name, onClick]) => (
-              <TxtButton
-                key={name}
-                style={{
-                  paddingTop: '5px',
-                  alignItems: 'flex-start'
-                }}
-                onClick={() => onClick({ text, setMode, setText })}
-              >
-                {name}
-              </TxtButton>
-            ))}
+            right={(
+              auth ? Object.entries(viewButtons).map(([name, onClick]) => (
+                <TxtButton
+                  key={name}
+                  style={{
+                    paddingTop: '5px',
+                    alignItems: 'flex-start'
+                  }}
+                  onClick={() => onClick({ text, setMode, setText })}
+                >
+                  {name}
+                </TxtButton>
+              )) : null
+            )}
             bottom={
               <Stack.Horizontal style={{
               }}>
@@ -105,25 +109,27 @@ export function EditableListItem({
                 }}
               />
             }
-            right={Object.entries(viewButtons).map(([name, onClick]) => (
-              <TxtButton
-                key={name}
-                style={{
-                  paddingTop: '5px',
-                  alignItems: 'flex-start'
-                }}
-                onClick={() => onClick({ text, setMode, setText })}
-              >
-                {name}
-              </TxtButton>
-            ))}
+            right={(
+              auth ? Object.entries(viewButtons).map(([name, onClick]) => (
+                <TxtButton
+                  key={name}
+                  style={{
+                    paddingTop: '5px',
+                    alignItems: 'flex-start'
+                  }}
+                  onClick={() => onClick({ text, setMode, setText })}
+                >
+                  {name}
+                </TxtButton>
+              )) : null
+            )}
             bottom={
               null
             }
           />
         ),
         edit:
-          editButtons == null ? null : (
+          (!auth) || (editButtons == null) ? null : (
             <ListItem
               style={{
                 padding: '6px',
