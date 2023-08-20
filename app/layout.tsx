@@ -27,21 +27,7 @@ export default function RootLayout({
           <Header />
 
           <Providers>
-            <Spacing size={60} />
-            <Stack.Horizontal style={{
-              gap: '100px',
-              alignItems: 'flex-start'
-            }}>
-              <Stack.Vertical style={{
-                width: '120px',
-              }}>
-                <Sidebar />
-              </Stack.Vertical>
-
-              <Stack.Vertical>
-              {children}
-              </Stack.Vertical>
-            </Stack.Horizontal>
+            {children}
           </Providers>
           <Footer />
         </Container>
