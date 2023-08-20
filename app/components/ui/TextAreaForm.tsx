@@ -10,6 +10,7 @@ interface TextAreaFormProps {
   placeholder?: string;
   disabled?: boolean;
   children?: ReactNode;
+  onClick?: (e?: Event) => void | Promise<void>;
 }
 
 export const TextAreaForm = forwardRef<HTMLTextAreaElement, TextAreaFormProps>(({ 
@@ -18,7 +19,8 @@ export const TextAreaForm = forwardRef<HTMLTextAreaElement, TextAreaFormProps>((
   onFocus,
   placeholder,
   disabled = false,
-  children
+  children,
+  onClick,
 }, ref) => {
   const [inputText, setInputText] = useState<string>(defaultText ?? "");
 
@@ -33,6 +35,7 @@ export const TextAreaForm = forwardRef<HTMLTextAreaElement, TextAreaFormProps>((
         onFocus={onFocus}
         placeholder={placeholder}
         disabled={disabled}
+        onClick={onClick}
       />
       {children}
     </>
