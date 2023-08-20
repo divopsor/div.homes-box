@@ -1,4 +1,4 @@
-import { CSSProperties, forwardRef, useState } from "react";
+import { CSSProperties, forwardRef, ReactNode, useState } from "react";
 import { Spacing } from "./Space";
 import { TextArea } from "./TextArea";
 
@@ -9,15 +9,16 @@ interface TextAreaFormProps {
   onFocus?: () => void | Promise<void>;
   placeholder?: string;
   disabled?: boolean;
+  children?: ReactNode;
 }
 
 export const TextAreaForm = forwardRef<HTMLTextAreaElement, TextAreaFormProps>(({ 
   style,
   defaultText,
-  onSubmit,
   onFocus,
   placeholder,
-  disabled = false
+  disabled = false,
+  children
 }, ref) => {
   const [inputText, setInputText] = useState<string>(defaultText ?? "");
 
@@ -33,18 +34,7 @@ export const TextAreaForm = forwardRef<HTMLTextAreaElement, TextAreaFormProps>((
         placeholder={placeholder}
         disabled={disabled}
       />
-      <Spacing size={4} />
-      <button
-        onClick={async () => {
-          setInputText("");
-          await onSubmit(inputText);
-        }}
-        style={{
-          wordBreak: 'keep-all',
-        }}
-      >
-        입력
-      </button>
+      {children}
     </>
   );
 });

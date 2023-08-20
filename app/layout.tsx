@@ -8,6 +8,7 @@ import { GlobalCss } from "./components/GlobalCss";
 import { Stack } from "./components/ui/Stack";
 import { Sidebar } from "./containers/Home/Sidebar";
 import { Header } from "./components/Header";
+import { Portal } from "./components/Portal";
 
 export default function RootLayout({
   children,
@@ -44,6 +45,7 @@ export default function RootLayout({
           </Providers>
           <Footer />
         </Container>
+        <Portal.Context />
       </body>
       <GlobalCss />
     </html>

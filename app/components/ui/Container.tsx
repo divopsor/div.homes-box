@@ -1,10 +1,11 @@
 import { CSSProperties, ReactNode } from "react";
 
-interface ContainerProps {
+interface ContainerProps{
   children: ReactNode;
   className?: string;
   width?: number;
   style?: CSSProperties;
+  onClick?: () => void;
 }
 
 export const Container = ({
@@ -12,6 +13,7 @@ export const Container = ({
   children,
   width = 720,
   style,
+  onClick,
 }: ContainerProps) => {
   return (
     <div
@@ -21,6 +23,7 @@ export const Container = ({
         width: `${width}px`,
         ...(style ?? {}),
       }}
+      onClick={onClick}
     >
       {children}
     </div>
