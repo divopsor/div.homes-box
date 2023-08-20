@@ -7,11 +7,12 @@ import { TextAreaForm } from "../../components/ui/TextAreaForm";
 import { useMetaKeyShortcut } from "../../hooks/useMetaKeyShortcut";
 
 interface FormProps {
+  openKey?: string;
   initialValue?: string;
   onSubmit: (text: string) => Promise<void>;
 }
 
-export function Form({ initialValue, onSubmit }: FormProps) {
+export function Form({ openKey = 'k', initialValue, onSubmit }: FormProps) {
   const ref = useRef<HTMLTextAreaElement>(null);
   const [show, setShow] = useState<boolean>(false);
 
@@ -28,7 +29,7 @@ export function Form({ initialValue, onSubmit }: FormProps) {
   };
 
   useMetaKeyShortcut({
-    'k': () => toggleForm(),
+    [openKey]: () => toggleForm(),
     'Escape': () => setShow(false),
     'Enter': async () => {
       const value = ref.current?.value;

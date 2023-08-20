@@ -1,14 +1,22 @@
 'use client';
 
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { API } from "../api/index";
 
 type Model = string;
 
-export function useFlashList<T = any>(model?: Model) {
-  const [list, refetch, isLoading, isFetching] = useList(model);
+export function useFlashItem(model: Model, id: string) {
+  const [list, refetch] = useList(model);
+  const data = list.find((x: any) => x.id === id);
+
+  return [data, refetch];
+}
+
+export function useFlashList<T = any>(model: Model, parentId?: string) {
+  const [originList, refetch, isLoading, isFetching] = useList(model);
   const [flashList, setFlashList] = useState<T[]>([]);
+  const list = useMemo(() => originList.filter((x: any) => parentId != null ? x.body.parentId === parentId : x.body.parentId == null), [originList, parentId]);
 
   useEffect(() => {
     if (model == null) {
