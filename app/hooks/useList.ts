@@ -108,7 +108,7 @@ export function useFlashCategoryList() {
   }, []);
 
   useEffect(() => {
-    if (list == null) {
+    if (list == null || list.length === 0) {
       return;
     }
 
