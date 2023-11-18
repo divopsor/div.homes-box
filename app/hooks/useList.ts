@@ -36,7 +36,7 @@ export function useFlashList<T = any>(model: Model, parentId?: string) {
       return;
     }
 
-    if (list == null) {
+    if (list == null || list.length === 0) {
       return;
     }
 
@@ -108,7 +108,7 @@ export function useFlashCategoryList() {
   }, []);
 
   useEffect(() => {
-    if (list == null || list.length === 0) {
+    if (list == null) {
       return;
     }
 
