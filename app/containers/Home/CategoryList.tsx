@@ -12,7 +12,7 @@ export function CategoryList() {
       {
         Object.entries(list ?? []).map(([key, value]) => (
           <Link href={`/home/?category=${value}`} key={value as string}>
-            <Txt style={{ textAlign: 'center', fontSize: '2.4rem', fontWeight: 'bold' }}>
+            <Txt as="span" style={{ textAlign: 'center', fontSize: '2.4rem', fontWeight: 'bold' }}>
               {`👉 ${key} 보러가기`}
             </Txt>
           </Link>
@@ -21,4 +21,3 @@ export function CategoryList() {
     </>
   )
 }
-

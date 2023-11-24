@@ -1,15 +1,22 @@
-import { CSSProperties, ReactNode } from "react";
+import { CSSProperties, ElementType, ReactNode } from "react";
 
 interface TxtProps {
   className?: string;
   children: ReactNode;
   style?: CSSProperties;
   onClick?: () => void;
+  as?: ElementType;
 }
 
-export function Txt({ style, className, children, onClick }: TxtProps) {
+export function Txt({
+  style,
+  className,
+  children,
+  onClick,
+  as: Component = 'p',
+}: TxtProps) {
   return (
-    <p
+    <Component
       className={className}
       style={{
         width: '100%',
