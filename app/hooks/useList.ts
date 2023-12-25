@@ -24,7 +24,7 @@ export function useFlashList<T = any>(model: Model, parentId?: string) {
     }
     if (typeof window !== "undefined") {
       const list = JSON.parse(window?.localStorage?.getItem(
-        `useFlashList-${model}`
+        `useFlashList-${model}-${parentId ?? 'parent'}`
       ) ?? '[]');
 
       setFlashList(list);
@@ -42,7 +42,7 @@ export function useFlashList<T = any>(model: Model, parentId?: string) {
 
     if (typeof window !== "undefined") {
       window?.localStorage?.setItem(
-        `useFlashList-${model}`,
+        `useFlashList-${model}-${parentId ?? 'parent'}`,
         JSON.stringify(list)
       );
     }

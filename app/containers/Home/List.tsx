@@ -119,7 +119,6 @@ export function List() {
                 },
               }}
               onClick={(data) => {
-                console.log(data);
                 router.push(`/detail?category=${category}&id=${data.id}`);
               }}
             />

@@ -183,96 +183,100 @@ export const DetailPage = () => {
           { auth ? <Form openKey='m' initialValue={data.body.contents} onSubmit={onSubmit}/> : null }
           { auth ? <Form openKey='k' onSubmit={onSubmitCreate}/> : null }
 
-          <ul>
-            {childList
-              .sort((a: any, b: any) =>
-                (a.body.priority ?? 0) > (b.body.priority ?? 0) ? -1 : 1
-              )
-              .map((data: any, index: number) => (
-                <EditableListItem
-                  key={`${data.id}-${index}`}
-                  data={{ id: data.id, ...data.body, }}
-                  onClick={() => {
-                    router.push(`/detail?category=${category}&id=${data.id}`);
-                  }}
-                  viewButtons={{
-                    "⬆": async () => {
-                      if (index <= 0) {
-                        return;
-                      }
-
-                      const a = childList[index];
-                      const b = childList[index - 1];
-
-                      const aResource = {
-                        ...a.body,
-                        priority: b.body.priority,
-                      };
-
-                      const bResource = {
-                        ...b.body,
-                        priority: a.body.priority,
-                      };
-
-                      try {
-                        await API.of(category).updateItems([
-                          {
-                            id: a.id,
-                            body: aResource,
-                          },
-                          {
-                            id: b.id,
-                            body: bResource,
+          {
+            parent != null ? null : (
+              <ul>
+                {childList
+                  .sort((a: any, b: any) =>
+                    (a.body.priority ?? 0) > (b.body.priority ?? 0) ? -1 : 1
+                  )
+                  .map((data: any, index: number) => (
+                    <EditableListItem
+                      key={`${data.id}-${index}`}
+                      data={{ id: data.id, ...data.body, }}
+                      onClick={() => {
+                        router.push(`/detail?category=${category}&id=${data.id}`);
+                      }}
+                      viewButtons={{
+                        "⬆": async () => {
+                          if (index <= 0) {
+                            return;
                           }
-                        ]);
-        
-                        await refetch();
-                      } catch (error:any) {
-                        if (error.response.data.message === 'Not Allowed') {
-                          router.push('/login');
-                        }
-                      }
-                    },
-                    "⬇": async () => {
-                      if (index >= childList.length - 1) {
-                        return;
-                      }
-                      const a = childList[index];
-                      const b = childList[index + 1];
 
-                      const aResource = {
-                        ...a.body,
-                        priority: b.body.priority,
-                      };
+                          const a = childList[index];
+                          const b = childList[index - 1];
 
-                      const bResource = {
-                        ...b.body,
-                        priority: a.body.priority,
-                      };
+                          const aResource = {
+                            ...a.body,
+                            priority: b.body.priority,
+                          };
 
-                      try {
-                        await API.of(category).updateItems([
-                          {
-                            id: a.id,
-                            body: aResource,
-                          },
-                          {
-                            id: b.id,
-                            body: bResource,
+                          const bResource = {
+                            ...b.body,
+                            priority: a.body.priority,
+                          };
+
+                          try {
+                            await API.of(category).updateItems([
+                              {
+                                id: a.id,
+                                body: aResource,
+                              },
+                              {
+                                id: b.id,
+                                body: bResource,
+                              }
+                            ]);
+            
+                            await refetch();
+                          } catch (error:any) {
+                            if (error.response.data.message === 'Not Allowed') {
+                              router.push('/login');
+                            }
                           }
-                        ]);
-        
-                        await refetch();
-                      } catch (error:any) {
-                        if (error.response.data.message === 'Not Allowed') {
-                          router.push('/login');
-                        }
-                      }
-                    },
-                  }}
-                />
-              ))}
-          </ul>
+                        },
+                        "⬇": async () => {
+                          if (index >= childList.length - 1) {
+                            return;
+                          }
+                          const a = childList[index];
+                          const b = childList[index + 1];
+
+                          const aResource = {
+                            ...a.body,
+                            priority: b.body.priority,
+                          };
+
+                          const bResource = {
+                            ...b.body,
+                            priority: a.body.priority,
+                          };
+
+                          try {
+                            await API.of(category).updateItems([
+                              {
+                                id: a.id,
+                                body: aResource,
+                              },
+                              {
+                                id: b.id,
+                                body: bResource,
+                              }
+                            ]);
+            
+                            await refetch();
+                          } catch (error:any) {
+                            if (error.response.data.message === 'Not Allowed') {
+                              router.push('/login');
+                            }
+                          }
+                        },
+                      }}
+                    />
+                  ))}
+              </ul>
+            )
+          }
         </Container>
       </main>
     </>
