@@ -2,6 +2,7 @@
 module.exports = (phase, { defaultConfig }) => {
   const nextConfig = {
     trailingSlash: true,
+    ...(process.env.LOCAL === 'true' ? {} : { output: 'export' }),
     // ...defaultConfig,
     reactStrictMode: true,
     swcMinify: true,
@@ -18,7 +19,6 @@ module.exports = (phase, { defaultConfig }) => {
       // your project has ESLint errors.
       ignoreDuringBuilds: true,
     },
-    output: process.env.LOCAL === 'true' ? null : 'export',
     redirects: process.env.LOCAL === 'true' ? async () => {
       return [
         {
@@ -32,7 +32,7 @@ module.exports = (phase, { defaultConfig }) => {
     rewrites: process.env.LOCAL === 'true' ? async () => {
       return [
         {
-          source: '/api/:slug*/',
+          source: '/api/:slug*',
           destination: 'https://app.divops.kr/github-api/api/:slug*', // Matched parameters can be used in the destination
           basePath: false,
         },
