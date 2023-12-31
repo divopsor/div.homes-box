@@ -23,6 +23,7 @@ export function EditableListItem({
   onClick,
 }: EditableListItemProps) {
   const auth = useContext(AuthContext);
+  const contents = data.contents.split('\n');
 
   return (
     <ListItem
@@ -35,7 +36,7 @@ export function EditableListItem({
       left={
         <TextArea.View 
           style={{ alignItems: 'flex-start', cursor: 'pointer' }} 
-          value={data.contents.split('\n')[0]} 
+          value={`${contents[0]}${contents[1] == null ? '' : `\n${contents[1]}`}`} 
           onClick={() => {
             onClick?.(data);
           }}
