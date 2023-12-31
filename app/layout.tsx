@@ -1,12 +1,9 @@
 'use client';
 
 import { Container } from "./components/ui/Container";
-import { Spacing } from "./components/ui/Space";
 import Providers from "./providers";
 import Footer from "./components/Footer";
 import { GlobalCss } from "./components/GlobalCss";
-import { Stack } from "./components/ui/Stack";
-import { Sidebar } from "./containers/Home/Sidebar";
 import { Header } from "./components/Header";
 import { Portal } from "./components/Portal";
 
